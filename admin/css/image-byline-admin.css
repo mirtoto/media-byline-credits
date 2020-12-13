@@ -1,0 +1,13 @@
+.suggestions-modal {
+    z-index: 160001 !important;
+    margin-top: -30px;
+}
+.compat-attachment-fields, .compat-field-byline_link input, .compat-field-byline input {
+    width: 100%;
+}
+.compat-field-byline .label, .compat-field-byline .field, .compat-field-byline_link .label, .compat-field-byline_link .field {
+    display: block;
+}
+.form-table td.align-top {
+    vertical-align: top;
+}

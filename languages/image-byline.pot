@@ -1,0 +1,35 @@
+# Copyright (C) 2020 devbackroom
+# This file is distributed under the same license as the image-byline package.
+
+msgid "Byline Credit"
+msgstr ""
+
+msgid "Byline Credit Link"
+msgstr ""
+
+msgid "Image and Media Byline Credits"
+msgstr ""
+
+msgid "General Options"
+msgstr ""
+
+msgid "Prefix byline credit"
+msgstr ""
+
+msgid "Search suggestions role"
+msgstr ""
+
+msgid "Search suggestions"
+msgstr ""
+
+msgid "A short label to show before the byline credit e.g. Source:."
+msgstr ""
+
+msgid "You can use a user role to automatically get a list of sources to show in the Media Library Byline Credit field suggestions. Leave this field blank if you just want to use the simple list."
+msgstr ""
+
+msgid "A list of sources to show in the Media Library Byline Credit field suggestions. Put each value on a new line. Leave this field blank if you just want to use a user role for your suggestions."
+msgstr ""
+
+msgid "Here you can configure your options for the Image and Media Byline Credits plugin. All the settings are optional."
+msgstr ""
