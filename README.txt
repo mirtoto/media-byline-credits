@@ -1,9 +1,9 @@
-=== Image and Media Byline Credits ===
-Contributors: devbackroom
+=== Media Byline Credits ===
+Contributors: devbackroom, mirtoto
 Tags: image byline, image credit, byline, credit, image, featured, thumbnail, attachment, media, Gutenberg block, image block, gallery
 Donate link: https://www.devbackroom.com/donate
 Requires at least: 4.6.0
-Tested up to: 5.4.1
+Tested up to: 5.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -11,9 +11,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 A simple way to add a byline credit to your images, media and other content.
 
 == Description ==
-We are blessed with free resources like plugins, apps, images, audio and video. Content creators give their time, skills and love to provide us with their creations. Show your appreciation by giving due credit and a link back to the provider, this could be to their donate page, website or hosted page.
+We are blessed with free resources like plugins, apps, images, audio and video.
+Content creators give their time, skills and love to provide us with their
+creations. Show your appreciation by giving due credit and a link back
+to the provider, this could be to their donate page, website or hosted page.
 
-This simple and flexible plugin makes it easy for you to add a byline credit to your images and other media. You can do the following:
+This simple and flexible plugin makes it easy for you to add a byline credit
+to your images and other media. You can do the following:
 
 * Add a byline credit field when uploading media.
 * Automatically display the byline credit under featured images
@@ -24,8 +28,8 @@ This simple and flexible plugin makes it easy for you to add a byline credit to 
 * Easily apply your own styles to the byline credit.
 
 == Installation ==
-1. Upload `image-byline.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the \"Plugins\" menu in WordPress
+1. Upload `media-byline-credits` to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the `Plugins` menu in WordPress.
 
 == Frequently Asked Questions ==
 = Can I add a byline credit to audio or video? =
@@ -70,5 +74,10 @@ The byline shortcode can be used anywhere a shortcode can be used in a page or p
 3. Image Byline Options page in dashboard.
 
 == Changelog ==
+= 1.0.1 =
+* Fixed for Gutenberg image block in WordPress >5.4.
+* Serious improvement of injecting credits for Gutengerg image blocks,
+  including support for customised captions.
+
 = 1.0.0 =
-* Initial version
+* Initial version.

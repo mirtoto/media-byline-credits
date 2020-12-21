@@ -99,18 +99,14 @@ class Image_Byline_Public {
 	*
 	* @since    1.0.0
 	*/
-	public function add_byline_to_caption($caption) {
-		if ( ! has_post_thumbnail() ) {
-			return;
-		}
-
-		$img_id = get_post_thumbnail_id( get_the_ID() );
+	public function add_byline_to_caption($caption, $post_id) {
+		$img_id = $post_id;
 
 		$byline = get_post_meta( $img_id, '_byline', true );
 		if ( !empty($byline) ) {
 			$link = get_post_meta( $img_id, '_byline_link', true );
 			if ( !empty($link) ) {
-				$byline = '<a href="'.$link.'" target="_blank" rel="no-follow">'.$byline.'</a>';
+				$byline = '<a href="' . $link . '" target="_blank" rel="no-follow">' . $byline . '</a>';
 			}
 		}
 
@@ -121,7 +117,19 @@ class Image_Byline_Public {
 			$before_byline = '';
 		}
 
-		return '<figcaption class="image-credit"><span class="image-caption">'.$caption.'</span> '.$before_byline.' '.$byline.' </figcaption>';
+		$credits = '';
+		if ( !empty( $byline) ) {
+			if ( !empty( $caption ) ) {
+				$credits .= ', ';
+			}
+			$credits .= '<span class="image-byline">';
+			if ( !empty( $before_byline ) ) {
+				$credits .= $before_byline . ' ';
+			}
+			$credits .= $byline . '</span>';
+		}
+
+		return '<figcaption class="image-credit"><span class="image-caption">' . $caption . '</span>'. $credits . '</figcaption>';
 	}
 
 	/**
@@ -131,12 +139,38 @@ class Image_Byline_Public {
 	*/
 	function byline_image_render( $attributes, $content ) {
 
-		$attachment = get_post($attributes['id']);
-		$caption = wp_get_attachment_caption( $attributes['id'] );
-		$old_caption = '<figcaption>'.$attachment->post_excerpt.'</figcaption>';
+		$attachment = get_post( $attributes['id'] );
+		//$caption = wp_get_attachment_caption( $attributes['id'] );
+		//$old_caption = '<figcaption>' . $attachment->post_excerpt . '</figcaption>';
 
-		return str_replace($old_caption, $caption, $content);
+		//return empty( $caption ) ? $content : str_replace( $old_caption, $caption, $content );
 
+		libxml_use_internal_errors( true );
+	
+		$figureDocument = new DOMDocument();
+		if (false === $figureDocument->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES' ) ) ) {
+			return $content;
+		}
+
+		$captionValue = '';
+		$figcaption = $figureDocument->getElementsByTagName( 'figcaption' );
+		if ( 0 !== count( $figcaption ) ) {
+			$captionValue = $figcaption->item(0)->nodeValue;
+			// remove figcaption
+			$figcaption->item(0)->parentNode->removeChild($figcaption->item(0));
+		}
+		// build new caption with credits
+		$caption = $this->add_byline_to_caption($captionValue, $attributes['id']);
+
+		// insert new figcaption
+		$figcaptionDocument = new DOMDocument();
+		if (false === $figcaptionDocument->loadHTML( mb_convert_encoding( $caption, 'HTML-ENTITIES' ) ) ) {
+			return $content;
+		}
+		$figcaptionNode = $figureDocument->importNode( $figcaptionDocument->documentElement, true );
+		$figureDocument->getElementsByTagName( 'figure' )->item(0)->appendChild( $figcaptionNode );
+
+		return $figureDocument->saveHTML();
 	}
 
 	/**

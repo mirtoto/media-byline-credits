@@ -20,8 +20,8 @@ msgstr "Byline krediet"
 msgid "Byline Credit Link"
 msgstr "Byline kredietlink"
 
-msgid "Image and Media Byline Credits"
-msgstr "Afbeeldingen en Media Byline Krediet"
+msgid "Media Byline Credits"
+msgstr "Media Byline Krediet"
 
 msgid "General Options"
 msgstr "Algemene opties"
@@ -44,5 +44,5 @@ msgstr "U kunt een gebruikersrol gebruiken om automatisch een lijst met bronnen 
 msgid "A list of sources to show in the Media Library Byline Credit field suggestions. Put each value on a new line. Leave this field blank if you just want to use a user role for your suggestions."
 msgstr "Een lijst met bronnen om weer te geven in de suggesties van het veld Byline Credit van Media Library. Zet elke waarde op een nieuwe regel. Laat dit veld leeg als u alleen een gebruikersrol wilt gebruiken voor uw suggesties."
 
-msgid "Here you can configure your options for the Image and Media Byline Credits plugin. All the settings are optional."
-msgstr "Hier kunt u uw opties configureren voor de plug-in Afbeeldingen en Media Byline Krediet. Alle instellingen zijn optioneel."
+msgid "Here you can configure your options for the Media Byline Credits plugin. All the settings are optional."
+msgstr "Hier kunt u uw opties configureren voor de plug-in Media Byline Krediet. Alle instellingen zijn optioneel."

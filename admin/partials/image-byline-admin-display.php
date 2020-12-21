@@ -16,7 +16,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <form action='options.php' method='post'>
 
-    <h1><?php esc_html_e( 'Image and Media Byline Credits', 'image-byline' ); ?></h1>
+    <h1><?php esc_html_e( 'Media Byline Credits', 'image-byline' ); ?></h1>
 
     <?php
     settings_fields( 'imageByline_group' );

@@ -8,17 +8,17 @@
 * registers the activation and deactivation functions, and defines a function
 * that starts the plugin.
 *
-* @link              https://www.devbackroom.com/
+* @link              https://github.com/mirtoto/media-byline-credits
 * @since             1.0.0
 * @package           Image_Byline
 *
 * @wordpress-plugin
-* Plugin Name:       Image and Media Byline Credits
-* Plugin URI:        https://www.devbackroom.com/image-byline
+* Plugin Name:       Media Byline Credits
+* Plugin URI:        https://github.com/mirtoto/media-byline-credits
 * Description:       A simple way to add a byline credit to your images, media and other content.
-* Version:           1.0.0
-* Author:            DevBackroom
-* Author URI:        https://www.devbackroom.com/
+* Version:           1.0.1
+* Author:            DevBackroom (v1.0.0), Mirosław Toton
+* Author URI:        https://github.com/mirtoto/
 * License:           GPL-2.0+
 * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
 * Text Domain:       image-byline
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
 * Start at version 1.0.0 and use SemVer - https://semver.org
 * Rename this for your plugin and update it as you release new versions.
 */
-define( 'IMAGE_BYLINE_VERSION', '1.0.0' );
+define( 'IMAGE_BYLINE_VERSION', '1.0.1' );
 
 /**
 * The code that runs during plugin activation.

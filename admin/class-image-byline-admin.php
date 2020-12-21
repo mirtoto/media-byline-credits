@@ -293,7 +293,7 @@ class Image_Byline_Admin {
 	*/
 	function settings_section_callback() {
 
-		esc_html_e( 'Here you can configure your options for the Image and Media Byline Credits plugin. All the settings are optional.', 'image-byline' );
+		esc_html_e( 'Here you can configure your options for the Media Byline Credits plugin. All the settings are optional.', 'image-byline' );
 
 	}
 

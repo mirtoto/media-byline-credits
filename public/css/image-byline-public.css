@@ -4,11 +4,7 @@
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.image-caption {
-    font-weight: bold;
-}
 .image-byline {
-    color: #929292;
     font-style: italic;
 }
 .no-credit .image-credit {

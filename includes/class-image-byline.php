@@ -183,8 +183,9 @@ class Image_Byline {
 
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
 
-		$this->loader->add_filter( 'wp_get_attachment_caption', $plugin_public, 'add_byline_to_caption' );
-		$this->loader->add_action( 'init', $plugin_public, 'byline_register_image' );
+		$this->loader->add_filter( 'wp_get_attachment_caption', $plugin_public, 'add_byline_to_caption', null, 2 );
+		$tag = version_compare( $wp_version, '5.5' ) ? 'after_setup_theme' : 'init';
+		$this->loader->add_action( $tag, $plugin_public, 'byline_register_image' );
 
 	}
 
