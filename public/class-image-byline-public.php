@@ -138,12 +138,7 @@ class Image_Byline_Public {
 	* @since    1.0.0
 	*/
 	function byline_image_render( $attributes, $content ) {
-
 		$attachment = get_post( $attributes['id'] );
-		//$caption = wp_get_attachment_caption( $attributes['id'] );
-		//$old_caption = '<figcaption>' . $attachment->post_excerpt . '</figcaption>';
-
-		//return empty( $caption ) ? $content : str_replace( $old_caption, $caption, $content );
 
 		libxml_use_internal_errors( true );
 	
