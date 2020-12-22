@@ -16,7 +16,7 @@
 * Plugin Name:       Media Byline Credits
 * Plugin URI:        https://github.com/mirtoto/media-byline-credits
 * Description:       A simple way to add a byline credit to your images, media and other content.
-* Version:           1.0.1
+* Version:           1.1.0
 * Author:            DevBackroom (v1.0.0), Mirosław Toton
 * Author URI:        https://github.com/mirtoto/
 * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
 * Start at version 1.0.0 and use SemVer - https://semver.org
 * Rename this for your plugin and update it as you release new versions.
 */
-define( 'IMAGE_BYLINE_VERSION', '1.0.1' );
+define( 'IMAGE_BYLINE_VERSION', '1.1.0' );
 
 /**
 * The code that runs during plugin activation.

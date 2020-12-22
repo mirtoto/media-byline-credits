@@ -74,6 +74,11 @@ The byline shortcode can be used anywhere a shortcode can be used in a page or p
 3. Image Byline Options page in dashboard.
 
 == Changelog ==
+= 1.1.0 =
+* Added ability to force append byline to featured images (for themes without
+  supporting such feature). It is option which can be enable/disable via
+  new option "Featured image byline".
+
 = 1.0.1 =
 * Fixed for Gutenberg image block in WordPress >5.4.
 * Serious improvement of injecting credits for Gutengerg image blocks,

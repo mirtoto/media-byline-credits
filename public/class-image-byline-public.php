@@ -82,7 +82,7 @@ class Image_Byline_Public {
 	* @since    1.0.0
 	*/
 	public function register_shortcodes() {
-		add_shortcode( 'byline', array( $this, 'shortcode_byline') );
+		add_shortcode( 'byline', array( $this, 'shortcode_byline' ) );
 	}
 
 	/**
@@ -90,8 +90,8 @@ class Image_Byline_Public {
 	*
 	* @since    1.0.0
 	*/
-	public function shortcode_byline($atts, $content='') {
-		return '<figcaption class="image-credit"><span class="image-byline">' . $content . '</span></figcaption>';
+	public function shortcode_byline($atts, $content = '') {
+		return $this->figcaption( '<span class="image-byline">' . $content . '</span>' );
 	}
 
 	/**
@@ -99,7 +99,8 @@ class Image_Byline_Public {
 	*
 	* @since    1.0.0
 	*/
-	public function add_byline_to_caption($caption, $post_id) {
+	public function add_byline_to_caption( $caption, $post_id ) {
+
 		$img_id = $post_id;
 
 		$byline = get_post_meta( $img_id, '_byline', true );
@@ -111,8 +112,8 @@ class Image_Byline_Public {
 		}
 
 		$options = get_option( 'imageByline_options' );
-		if ( !empty($options['before_byline']) ) {
-			$before_byline = $options['before_byline'];
+		if ( !empty($options[ 'before_byline' ]) ) {
+			$before_byline = $options[ 'before_byline' ];
 		} else {
 			$before_byline = '';
 		}
@@ -129,7 +130,7 @@ class Image_Byline_Public {
 			$credits .= $byline . '</span>';
 		}
 
-		return '<figcaption class="image-credit"><span class="image-caption">' . $caption . '</span>'. $credits . '</figcaption>';
+		return '<span class="image-caption">' . $caption . '</span>'. $credits;
 	}
 
 	/**
@@ -138,7 +139,6 @@ class Image_Byline_Public {
 	* @since    1.0.0
 	*/
 	function byline_image_render( $attributes, $content ) {
-		$attachment = get_post( $attributes['id'] );
 
 		libxml_use_internal_errors( true );
 	
@@ -152,10 +152,10 @@ class Image_Byline_Public {
 		if ( 0 !== count( $figcaption ) ) {
 			$captionValue = $figcaption->item(0)->nodeValue;
 			// remove figcaption
-			$figcaption->item(0)->parentNode->removeChild($figcaption->item(0));
+			$figcaption->item(0)->parentNode->removeChild( $figcaption->item(0) );
 		}
 		// build new caption with credits
-		$caption = $this->add_byline_to_caption($captionValue, $attributes['id']);
+		$caption = $this->figcaption( $this->add_byline_to_caption( $captionValue, $attributes['id'] ) );
 
 		// insert new figcaption
 		$figcaptionDocument = new DOMDocument();
@@ -178,6 +178,44 @@ class Image_Byline_Public {
 		register_block_type( 'core/image', array(
 			'render_callback' => array( $this, 'byline_image_render'),
 		) );
+	}
+
+	/**
+	 * Add the byline to the featured image.
+	 * 
+	 * @since    1.1.0
+	 */
+	function add_byline_to_featured_caption( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+		$featured_image_byline = 0;
+		$options = get_option( 'imageByline_options' );
+		if ( !empty($options[ 'featured_image_byline' ]) ) {
+			$featured_image_byline = $options[ 'featured_image_byline' ];
+		}
+
+		// If byline caption append to featured image is not enabled
+		// or we're not in The Loop, return the HTML unchanged
+        if ( ! $featured_image_byline || ! in_the_loop() ) {
+            return $html;
+		} 
+		
+		// If we're not on a single post
+        if ( ! is_single() ) {
+            return $html;
+		}
+		
+		$caption = get_post( $post_thumbnail_id )->post_excerpt;
+		$caption = $this->add_byline_to_caption( $caption, $post_thumbnail_id );
+		return $html . $this->figcaption( $caption );
+	}
+
+	/**
+	 * Wrap passed caption by <figcaption></figcaption> container.
+	 * 
+	 * @since    1.1.0
+	 */
+	function figcaption( $caption ) {
+		return '<figcaption class="wp-caption-text image-credit">' . $caption . '</figcaption>';
 	}
 
 }

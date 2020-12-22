@@ -165,8 +165,8 @@ class Image_Byline_Admin {
 
 		add_submenu_page(
 			'tools.php',
-			__( 'Image Byline', 'image-byline' ),
-			__( 'Image Byline', 'image-byline' ),
+			__( 'Media Byline', 'image-byline' ),
+			__( 'Media Byline', 'image-byline' ),
 			'manage_options',
 			'image_byline',
 			array( $this, 'options_page' )
@@ -195,6 +195,14 @@ class Image_Byline_Admin {
 		);
 
 		add_settings_field(
+			'featured_image_byline',
+			__( 'Featured image byline', 'image-byline' ),
+			array( $this, 'featured_image_byline_render' ),
+			'imageByline_group',
+			'imageByline_group_section'
+		);
+
+		add_settings_field(
 			'before_byline',
 			__( 'Prefix byline credit', 'image-byline' ),
 			array( $this, 'before_byline_render' ),
@@ -220,6 +228,28 @@ class Image_Byline_Admin {
 	}
 
 	/**
+	* Render the featured_image_byline checkbox on the settings/options page.
+	*
+	* @since    1.1.0
+	*/
+	function featured_image_byline_render() {
+
+		$options = get_option( 'imageByline_options' );
+		if ( !empty($options['featured_image_byline']) ) {
+			$value = $options['featured_image_byline'];
+		} else {
+			$value = 0;
+		}
+		?>
+		<label for="imageByline_options[featured_image_byline]">
+		<input type="checkbox" id="imageByline_options[featured_image_byline]" name="imageByline_options[featured_image_byline]" value="1" <?php checked( 1, $value ); ?>>
+		<?php esc_html_e( 'Force append byline to featured images', 'image-byline' ); ?></label>
+		<p class="description"><?php esc_html_e( 'Check if your theme doesn\'t append caption to featured images.', 'image-byline' ); ?></p>
+		<?php
+
+	}
+
+	/**
 	* Render the before_byline text field on the settings/options page.
 	*
 	* @since    1.0.0
@@ -233,8 +263,8 @@ class Image_Byline_Admin {
 			$value = '';
 		}
 		?>
-		<input type="text" name="imageByline_options[before_byline]" value="<?php echo $value; ?>">
-		<td class="align-top"><em><?php esc_html_e( 'A short label to show before the byline credit e.g. Source:.', 'image-byline' ); ?></em></td>
+		<input type="text" class="regular-text" name="imageByline_options[before_byline]" value="<?php echo $value; ?>">
+		<p class="description"><?php esc_html_e( 'A short label to show before the byline credit e.g. Source:.', 'image-byline' ); ?></p>
 		<?php
 
 	}
@@ -261,7 +291,7 @@ class Image_Byline_Admin {
 
 		?>
 		<select name="imageByline_options[search_suggestions_role]"><?php echo $select_options; ?></select>
-		<td class="align-top"><em><?php esc_html_e( 'You can use a user role to automatically get a list of sources to show in the Media Library Byline Credit field suggestions. Leave this field blank if you just want to use the simple list.', 'image-byline' ); ?></em></td>
+		<p class="description"><?php esc_html_e( 'You can use a user role to automatically get a list of sources to show in the Media Library Byline Credit field suggestions. Leave this field blank if you just want to use the simple list.', 'image-byline' ); ?></p>
 		<?php
 
 	}
@@ -280,8 +310,10 @@ class Image_Byline_Admin {
 		}
 
 		?>
-		<textarea cols='40' rows='30' name='imageByline_options[search_suggestions]'><?php echo $value; ?></textarea>
-		<td class="align-top"><em><?php esc_html_e( 'A list of sources to show in the Media Library Byline Credit field suggestions. Put each value on a new line. Leave this field blank if you just want to use a user role for your suggestions.', 'image-byline' ); ?></em></td>
+		<fieldset>
+		<p><label for="imageByline_options[search_suggestions]"><?php esc_html_e( 'A list of sources to show in the Media Library Byline Credit field suggestions. Put each value on a new line. Leave this field blank if you just want to use a user role for your suggestions.', 'image-byline' ); ?></label></p>
+		<p><textarea class="large-text code" cols="50" rows="20" id="imageByline_options[search_suggestions]" name="imageByline_options[search_suggestions]"><?php echo $value; ?></textarea></p>
+		</fieldset>
 		<?php
 
 	}
