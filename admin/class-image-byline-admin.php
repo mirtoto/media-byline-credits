@@ -163,8 +163,7 @@ class Image_Byline_Admin {
 	*/
 	public function add_admin_menu(  ) {
 
-		add_submenu_page(
-			'tools.php',
+		add_options_page(
 			__( 'Media Byline', 'image-byline' ),
 			__( 'Media Byline', 'image-byline' ),
 			'manage_options',
