@@ -199,13 +199,13 @@ class Image_Byline_Public {
 		} 
 		
 		// If we're not on a single post
-        if ( ! is_single() ) {
+        if ( ! is_singular() ) {
             return $html;
 		}
 		
 		$caption = get_post( $post_thumbnail_id )->post_excerpt;
 		$caption = $this->add_byline_to_caption( $caption, $post_thumbnail_id );
-		return $html . $this->figcaption( $caption );
+		return $html . $this->figcaption( $caption, true );
 	}
 
 	/**
@@ -213,8 +213,9 @@ class Image_Byline_Public {
 	 * 
 	 * @since    1.1.0
 	 */
-	function figcaption( $caption ) {
-		return '<figcaption class="wp-caption-text image-credit">' . $caption . '</figcaption>';
+	function figcaption( $caption, $featured = false ) {
+		$featured = $featured ? ' featured-image-credit' : '';
+		return '<figcaption class="wp-caption-text image-credit' . $featured . '">' . $caption . '</figcaption>';
 	}
 
 }

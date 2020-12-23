@@ -7,11 +7,11 @@
 .image-byline {
     font-style: italic;
 }
-.post-thumbnail figcaption.image-credit {
+figcaption.featured-image-credit {
     text-align: right;
     margin-right: 6px;
 }
-.post-thumbnail a.image-byline-link {
+figcaption.featured-image-credit a.image-byline-link {
     display: inline-block;
 }
 .no-credit .image-credit {
