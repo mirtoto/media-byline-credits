@@ -258,7 +258,7 @@ class Image_Byline_Admin {
 
 		$options = get_option( 'imageByline_options' );
 		if ( !empty($options['before_byline']) ) {
-			$value = $options['before_byline'];
+			$value = htmlspecialchars( $options['before_byline'] );
 		} else {
 			$value = '';
 		}
