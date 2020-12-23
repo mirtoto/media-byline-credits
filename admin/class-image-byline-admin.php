@@ -263,7 +263,7 @@ class Image_Byline_Admin {
 		}
 		?>
 		<input type="text" class="regular-text" name="imageByline_options[before_byline]" value="<?php echo $value; ?>">
-		<p class="description"><?php esc_html_e( 'A short label to show before the byline credit e.g. Source:.', 'image-byline' ); ?></p>
+		<p class="description"><?php esc_html_e( 'A short label to show before the byline credit e.g.: "Source:".', 'image-byline' ); ?></p>
 		<?php
 
 	}

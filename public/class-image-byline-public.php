@@ -107,25 +107,24 @@ class Image_Byline_Public {
 		if ( !empty($byline) ) {
 			$link = get_post_meta( $img_id, '_byline_link', true );
 			if ( !empty($link) ) {
-				$byline = '<a href="' . $link . '" target="_blank" rel="no-follow">' . $byline . '</a>';
+				$byline = '<a class="image-byline-link" href="' . $link . '" target="_blank" rel="no-follow">' . $byline . '</a>';
 			}
 		}
 
+		$before_byline = '';
 		$options = get_option( 'imageByline_options' );
 		if ( !empty($options[ 'before_byline' ]) ) {
 			$before_byline = $options[ 'before_byline' ];
-		} else {
-			$before_byline = '';
 		}
 
 		$credits = '';
 		if ( !empty( $byline) ) {
 			if ( !empty( $caption ) ) {
-				$credits .= ', ';
+				$credits .= '<span class="image-credit-separator"></span>';
 			}
 			$credits .= '<span class="image-byline">';
 			if ( !empty( $before_byline ) ) {
-				$credits .= $before_byline . ' ';
+				$credits .= $before_byline;
 			}
 			$credits .= $byline . '</span>';
 		}
@@ -155,7 +154,7 @@ class Image_Byline_Public {
 			$figcaption->item(0)->parentNode->removeChild( $figcaption->item(0) );
 		}
 		// build new caption with credits
-		$caption = $this->figcaption( $this->add_byline_to_caption( $captionValue, $attributes['id'] ) );
+		$caption = $this->figcaption( $this->add_byline_to_caption( $captionValue, $attributes[ 'id' ] ) );
 
 		// insert new figcaption
 		$figcaptionDocument = new DOMDocument();
