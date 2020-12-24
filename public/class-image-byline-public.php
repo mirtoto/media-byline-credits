@@ -140,9 +140,11 @@ class Image_Byline_Public {
 	function byline_image_render( $attributes, $content ) {
 
 		libxml_use_internal_errors( true );
+		$libxmlOpt = LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD;
 	
+		// parse figure block
 		$figureDocument = new DOMDocument();
-		if (false === $figureDocument->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES' ) ) ) {
+		if (false === $figureDocument->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES' ), $libxmlOpt ) ) {
 			return $content;
 		}
 
@@ -156,13 +158,17 @@ class Image_Byline_Public {
 		// build new caption with credits
 		$caption = $this->figcaption( $this->add_byline_to_caption( $captionValue, $attributes[ 'id' ] ) );
 
-		// insert new figcaption
+		// parse new figcaption block
 		$figcaptionDocument = new DOMDocument();
-		if (false === $figcaptionDocument->loadHTML( mb_convert_encoding( $caption, 'HTML-ENTITIES' ) ) ) {
+		if (false === $figcaptionDocument->loadHTML( mb_convert_encoding( $caption, 'HTML-ENTITIES' ), $libxmlOpt ) ) {
 			return $content;
 		}
+		// insert new figcaption block into figure block
 		$figcaptionNode = $figureDocument->importNode( $figcaptionDocument->documentElement, true );
-		$figureDocument->getElementsByTagName( 'figure' )->item(0)->appendChild( $figcaptionNode );
+		$figure = $figureDocument->getElementsByTagName( 'figure' );
+		if ( 0 !== count( $figure ) ) {
+			$figure->item(0)->appendChild( $figcaptionNode );
+		}
 
 		return $figureDocument->saveHTML();
 	}
